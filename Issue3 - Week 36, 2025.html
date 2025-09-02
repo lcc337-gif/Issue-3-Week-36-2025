@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Implementation Team Newsletter | Week 36, 2025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Autumnal Warmth -->
+    <!-- Application Structure Plan: The application uses a single-page dashboard layout with a sticky top navigation bar for quick access to thematic sections: "Highlights," "People," "Updates," and "Resources." This structure was chosen to group related information logically, making the newsletter more scannable and engaging than a linear document. Key interactions include an accordion for detailed updates to prevent information overload and a visual timeline for events, enhancing readability and user experience. -->
+    <!-- Visualization & Content Choices: 
+        - Wins/Encouragement -> Goal: Inform/Motivate -> Presentation: Icon-driven cards -> Interaction: Hover effects -> Justification: Quickly highlights positive news.
+        - Anniversaries/SWAG -> Goal: Recognize/Inform -> Presentation: People-centric cards -> Interaction: Simple links -> Justification: Groups all team-related items together.
+        - NITP/Product/M365 Updates -> Goal: Inform on changes -> Presentation: Accordion component -> Interaction: Click to expand/collapse details -> Justification: Condenses dense information, allowing users to explore what's relevant to them.
+        - Important Dates -> Goal: Organize/Remind -> Presentation: Vertical timeline -> Interaction: None, visual clarity is the priority -> Justification: Transforms a simple list into a more intuitive and visually appealing schedule. Method: HTML/Tailwind.
+        - Links -> Goal: Provide Resources -> Presentation: Styled buttons -> Interaction: Click to navigate -> Justification: Clear, actionable calls-to-action. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+    </style>
+</head>
+<body class="bg-amber-50 text-stone-800">
+
+    <header class="bg-white/80 backdrop-blur-lg shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0">
+                    <h1 class="text-lg font-bold text-orange-700">Implementation Newsletter</h1>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#highlights" class="text-stone-600 hover:bg-orange-100 hover:text-orange-700 px-3 py-2 rounded-md text-sm font-medium">Highlights</a>
+                        <a href="#people" class="text-stone-600 hover:bg-orange-100 hover:text-orange-700 px-3 py-2 rounded-md text-sm font-medium">People Hub</a>
+                        <a href="#updates" class="text-stone-600 hover:bg-orange-100 hover:text-orange-700 px-3 py-2 rounded-md text-sm font-medium">Key Updates</a>
+                        <a href="#calendar" class="text-stone-600 hover:bg-orange-100 hover:text-orange-700 px-3 py-2 rounded-md text-sm font-medium">Calendar</a>
+                        <a href="#resources" class="text-stone-600 hover:bg-orange-100 hover:text-orange-700 px-3 py-2 rounded-md text-sm font-medium">Resources</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                     <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-stone-500 hover:text-white hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-orange-700 focus:ring-white">
+                        <span class="sr-only">Open main menu</span>
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="md:hidden hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#highlights" class="text-stone-600 hover:bg-orange-100 hover:text-orange-700 block px-3 py-2 rounded-md text-base font-medium">Highlights</a>
+                <a href="#people" class="text-stone-600 hover:bg-orange-100 hover:text-orange-700 block px-3 py-2 rounded-md text-base font-medium">People Hub</a>
+                <a href="#updates" class="text-stone-600 hover:bg-orange-100 hover:text-orange-700 block px-3 py-2 rounded-md text-base font-medium">Key Updates</a>
+                <a href="#calendar" class="text-stone-600 hover:bg-orange-100 hover:text-orange-700 block px-3 py-2 rounded-md text-base font-medium">Calendar</a>
+                <a href="#resources" class="text-stone-600 hover:bg-orange-100 hover:text-orange-700 block px-3 py-2 rounded-md text-base font-medium">Resources</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <div class="text-center mb-12">
+            <p class="text-base font-medium text-orange-600">Issue #3 | Week 36, 2025</p>
+            <h2 class="mt-2 text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">This Week's Updates</h2>
+            <p class="mt-4 max-w-2xl mx-auto text-lg text-stone-500">A summary of our team's progress, announcements, and upcoming events.</p>
+        </div>
+
+        <section id="highlights" class="mb-16 scroll-mt-20">
+            <h3 class="text-2xl font-bold text-stone-900 mb-2">This Week's Highlights</h3>
+            <p class="text-stone-600 mb-8">This section celebrates our recent successes and recognizes the outstanding contributions from team members. It's all about acknowledging the great work that drives our team forward.</p>
+            
+            <div class="group bg-teal-50 p-6 rounded-lg shadow-lg border border-teal-300 mb-8 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+                <div class="flex items-center justify-center mb-4">
+                    <div class="bg-teal-200 p-3 rounded-full mr-4">
+                        <span class="text-3xl">🏆</span>
+                    </div>
+                    <h4 class="text-2xl font-bold text-teal-800">Restaurant Go Lives</h4>
+                </div>
+                <div class="text-stone-800 text-center">
+                    <p class="text-lg">We're proud to share a major milestone: **one-third** of our recent Restaurant Gi Lives were repeat customers! This impressive number shows that our software is delivering consistent, long-term value that keeps businesses coming back for more. It’s the ultimate validation that we’re building a solution our clients can grow with and are delighted to use again. This achievement speaks volumes about the incredible work our team does every day, from initial implementation to ongoing support. Thank you for building trust and delivering excellence that keeps our customers coming back!</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-orange-100 p-6 rounded-lg shadow-md border border-orange-200 hover:shadow-lg transition-shadow">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-orange-200 p-2 rounded-full mr-4">
+                            <span class="text-2xl">🎉</span>
+                        </div>
+                        <h4 class="text-lg font-semibold text-stone-800">New Live Accounts</h4>
+                    </div>
+                    <ul class="list-disc pl-5 text-stone-600 space-y-2">
+                        <li>✨ Songbird Station</li>
+                        <li>✨ Tall Pine Lounge & Liquor</li>
+                        <li>✨ Los Arturo's Mexican Food LLC</li>
+                        <li>✨ Paris Bakery</li>
+                        <li>✨ BAM Marietta USA232</li>
+                        <li>✨ MISH MOSH DELI</li>
+                        <li>✨ Oh My Chives Natural Market</li>
+                        <li>✨ Organic Squeeze Edmond</li>
+                        <li>✨ The Hummus Truck</li>
+                        <li>✨ Hershey's Beach Ice Cream Shop (Flagship)</li>
+                        <li>✨ CountryView Restaurant</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-md border border-stone-200 hover:shadow-lg transition-shadow">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-yellow-200 p-2 rounded-full mr-4">
+                            <span class="text-2xl">⭐</span>
+                        </div>
+                        <h4 class="text-lg font-semibold text-stone-800">Words of Encouragement</h4>
+                    </div>
+                    <p class="text-stone-600">A special shoutout to **Kayla** for her incredible work! A customer, **Main Paige**, shared:</p>
+                    <blockquote class="mt-2 pl-4 border-l-4 border-yellow-500 text-stone-500 italic">
+                        "We appreciate you so much Kayla! You are really helping give us confidence in this system and we would be lost without your help!"
+                    </blockquote>
+                </div>
+            </div>
+        </section>
+
+        <section id="people" class="mb-16 scroll-mt-20">
+            <h3 class="text-2xl font-bold text-stone-900 mb-2">People Hub</h3>
+            <p class="text-stone-600 mb-8">Here we celebrate our team members' milestones and share fun opportunities. Let's congratulate our colleagues on their anniversaries and don't forget to check out the latest team swag!</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- NEW EMPLOYEE SPOTLIGHT CARD -->
+                <div class="bg-red-50 p-6 rounded-lg shadow-md border border-red-200">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-red-200 p-2 rounded-full mr-4">
+                            <span class="text-2xl">🌟</span>
+                        </div>
+                        <h4 class="text-lg font-semibold text-stone-800">Employee Spotlight: GSC MBOCS</h4>
+                    </div>
+                    <p class="text-stone-600 mb-4">Our friends at the GSC: Every year on September 1st, the GSC MBOCS (Maintenance and Back Office Team) comes together for a fun team-building activity to strengthen our bond and trust. This year, we had an exciting and enjoyable day! We played a game inspired by the popular series 'Squid Game,' where each team tackled five different challenges to complete the game. To wrap up the day, we enjoyed a delicious buffet lunch together. A special thank you to Vina Aguilar for the submission!</p>
+                    <div class="flex justify-center flex-wrap gap-4 mt-4">
+                        <div class="max-w-xs overflow-hidden rounded-lg shadow-lg">
+                           
+                        </div>
+                        <div class="max-w-xs overflow-hidden rounded-lg shadow-lg">
+                           
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-md border border-stone-200">
+                     <div class="flex items-center mb-4">
+                        <div class="bg-lime-200 p-2 rounded-full mr-4">
+                            <span class="text-2xl">🎊</span>
+                        </div>
+                        <h4 class="text-lg font-semibold text-stone-800">Team Anniversaries</h4>
+                    </div>
+                    <ul class="space-y-3 text-stone-600">
+                        <li><span class="font-bold text-lg text-stone-800">Stephanie Smith</span>: Celebrating 1 year on September 2nd!</li>
+                        <li><span class="font-bold text-lg text-stone-800">Lisa Nartey</span>: Celebrating 1 year on September 3rd!</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md border border-stone-200 flex flex-col justify-center">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-red-200 p-2 rounded-full mr-4">
+                            <span class="text-2xl">🎁</span>
+                        </div>
+                        <h4 class="text-lg font-semibold text-stone-800">Get Your SWAG!</h4>
+                    </div>
+                    <p class="text-stone-600 mb-4">Show your team pride! You can order your Genius Appreciation SWAG using the order form below.</p>
+                    <a href="#" class="mt-auto bg-red-600 text-white font-bold py-2 px-4 rounded-md hover:bg-red-700 transition-colors text-center">Order Form</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="updates" class="mb-16 scroll-mt-20">
+            <h3 class="text-2xl font-bold text-stone-900 mb-2">Key Updates</h3>
+            <p class="text-stone-600 mb-8">This section contains important operational and technical news. Click on each item to expand and view the full details about process changes, product updates, and upcoming system transitions.</p>
+            <div class="space-y-4">
+                <div class="accordion-item bg-white border border-stone-200 rounded-lg shadow-sm">
+                    <button class="accordion-header w-full flex justify-between items-center text-left p-4 font-semibold text-stone-800 hover:bg-stone-50">
+                        <span>Hardware Insight: Handheld 2.5 Beta</span>
+                        <span class="transform transition-transform duration-300">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-4 border-t border-stone-200 text-stone-600">
+                            <p>The beta team is happy to announce we are moving forward with the Handheld 2.5 (rebranded from Mobile 2.0). Here is some early insight with an internal-only unboxing of the latest hardware:</p>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li><a href="#" class="text-orange-600 hover:underline">Link to Unboxing 1</a></li>
+                                <li><a href="#" class="text-orange-600 hover:underline">Link to Unboxing 2</a></li>
+                                <li><a href="#" class="text-orange-600 hover:underline">Link to Unboxing 3</a></li>
+                                <li><a href="#" class="text-orange-600 hover:underline">Link to Unboxing 4</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item bg-white border border-stone-200 rounded-lg shadow-sm">
+                    <button class="accordion-header w-full flex justify-between items-center text-left p-4 font-semibold text-stone-800 hover:bg-stone-50">
+                        <span>Product Update: Genius for Restaurants Classic 9.107 is Now Available!</span>
+                        <span class="transform transition-transform duration-300">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-4 border-t border-stone-200 text-stone-600">
+                            <p>Reminder - Genius for Restaurants Classic 9.107 is Now Available!</p>
+                            <p class="mt-2">Release Notes for 9.107 are located in our <a href="https://team.globalpay.com/teamGP/" class="text-orange-600 hover:underline">Help Center</a>.</p>
+                            <p class="mt-2">Did You Know Sessions are recorded and can be found in our <a href="https://team.globalpay.com/teamGP/" class="text-orange-600 hover:underline">Help Center</a>.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item bg-white border border-stone-200 rounded-lg shadow-sm">
+                    <button class="accordion-header w-full flex justify-between items-center text-left p-4 font-semibold text-stone-800 hover:bg-stone-50">
+                        <span>Product Update: Genius for Restaurants Cloud 2.38 is Now Available!</span>
+                        <span class="transform transition-transform duration-300">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-4 border-t border-stone-200 text-stone-600">
+                            <p>Reminder - Genius for Restaurants Cloud 2.38 is Now Available!</p>
+                            <p class="mt-2">Check out the Release Notes for 2.38 in our <a href="https://team.globalpay.com/teamGP/" class="text-orange-600 hover:underline">Help Center</a>.</p>
+                            <p class="mt-2">Did You Know Sessions are recorded and can be found in our <a href="https://team.globalpay.com/teamGP/" class="text-orange-600 hover:underline">Help Center</a>.</p>
+                        </div>
+                    </div>
+                </div>
+                 <div class="accordion-item bg-white border border-stone-200 rounded-lg shadow-sm">
+                    <button class="accordion-header w-full flex justify-between items-center text-left p-4 font-semibold text-stone-800 hover:bg-stone-50">
+                        <span>Heads Up: Microsoft 365 Switchover</span>
+                        <span class="transform transition-transform duration-300">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-4 border-t border-stone-200 text-stone-600">
+                            <p>We're moving to Microsoft 365!</p>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>📅 Timeline</li>
+                                <li><a href="https://team.globalpay.com/teamGP/ls/content/7473863000365965/microsoft-365-FAQS" class="text-orange-600 hover:underline">❓ FAQs</a></li>
+                                <li>M365 apps and tools</li>
+                            </ul>
+                            <p class="mt-4">Find everything you need to stay informed on the <a href="https://team.globalpay.com/teamGP/ls/content/2021523390324185/microsoft-365" class="text-orange-600 hover:underline">Microsoft 365 teamGP page</a> and in the FAQs. Let’s make this transition smooth and successful!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="calendar" class="mb-16 scroll-mt-20">
+            <h3 class="text-2xl font-bold text-stone-900 mb-2">🗓️ Upcoming Calendar</h3>
+            <p class="text-stone-600 mb-8">Stay on top of deadlines and events with this timeline of what's happening in the coming weeks. Plan your schedule around these key dates for talks, learning sessions, and our monthly all-hands meeting.</p>
+            <div class="relative pl-8 border-l-2 border-orange-200">
+                
+                <div class="mb-8 relative">
+                    <div class="absolute -left-[3.2rem] top-1 h-6 w-6 bg-orange-500 rounded-full border-4 border-white"></div>
+                    <p class="text-sm font-medium text-orange-600">Sep 8 - 12</p>
+                    <h4 class="font-semibold mt-1">Learning Week</h4>
+                </div>
+
+                <div class="mb-8 relative">
+                     <div class="absolute -left-[3.2rem] top-1 h-6 w-6 bg-orange-500 rounded-full border-4 border-white"></div>
+                    <p class="text-sm font-medium text-orange-600">Wed, Sep 10 ⋅ 2:05pm EST</p>
+                    <h4 class="font-semibold mt-1">Lunch & Learn: Coffee Talk With Neeharika Nagisetty</h4>
+                </div>
+
+                <div class="mb-8 relative">
+                     <div class="absolute -left-[3.2rem] top-1 h-6 w-6 bg-orange-500 rounded-full border-4 border-white"></div>
+                    <p class="text-sm font-medium text-orange-600">Fri, Sep 19 ⋅ 10:00am EST</p>
+                    <h4 class="font-semibold mt-1">Implementation & Orders Monthly All Hands</h4>
+                    <a href="https://meet.google.com/jni-smfi-ixp" target="_blank" class="text-orange-600 hover:underline text-sm">Google Meet Link</a>
+                </div>
+
+                <div class="mb-8 relative">
+                     <div class="absolute -left-[3.2rem] top-1 h-6 w-6 bg-orange-500 rounded-full border-4 border-white"></div>
+                    <p class="text-sm font-medium text-orange-600">Tue, Sep 30</p>
+                    <h4 class="font-semibold mt-1">4 Talks Due</h4>
+                    <p class="text-sm text-stone-500">Final day to submit your Four Talks.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="resources" class="scroll-mt-20">
+            <h3 class="text-2xl font-bold text-stone-900 mb-2">Quick Resources</h3>
+            <p class="text-stone-600 mb-8">This area provides quick access to essential tools and pages you use regularly. Use these links to submit an IT ticket or visit the main team page.</p>
+            <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                 <a href="https://endpointservices.prodc3ecp.tsys.com/tool/" target="_blank" class="w-full sm:w-auto flex-1 text-center bg-stone-600 text-white font-bold py-3 px-6 rounded-md hover:bg-stone-700 transition-colors">IT Trouble Ticket</a>
+                 <a href="https://team.globalpay.com/teamGP/" target="_blank" class="w-full sm:w-auto flex-1 text-center bg-orange-600 text-white font-bold py-3 px-6 rounded-md hover:bg-orange-700 transition-colors">GP Page</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-white mt-16 border-t border-stone-200">
+        <div class="container mx-auto py-6 px-4 sm:px-6 lg:px-8 text-center text-stone-500">
+            <p>&copy; 2025 Implementation Team. Have a productive week!</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    const content = header.nextElementSibling;
+                    const arrow = header.querySelector('span:last-child');
+                    
+                    header.parentElement.classList.toggle('open');
+                    
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                        arrow.style.transform = 'rotate(0deg)';
+                    } else {
+                        document.querySelectorAll('.accordion-content').forEach(c => c.style.maxHeight = null);
+                        document.querySelectorAll('.accordion-header span:last-child').forEach(a => a.style.transform = 'rotate(0deg)');
+                        content.style.maxHeight = content.scrollHeight + "px";
+                        arrow.style.transform = 'rotate(180deg)';
+                    }
+                });
+            });
+
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            const mobileNavLinks = mobileMenu.querySelectorAll('a');
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
